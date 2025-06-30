@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-
-
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -11,21 +8,12 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  final List<Widget> carouselItems = [
-  Padding(
-    padding: const EdgeInsets.all(8.0),
-    child: Image.network(
-      'https://www.thetreknepal.com/wp-content/uploads/2024/07/Tips-for-Trekking.jpg',
-      fit: BoxFit.cover,
-      width: double.infinity,
-    ),
-  ),
-  Image.network(
-    'https://www.nepalguideinfo.com/new/wp-content/uploads/2025/01/nepal-scaled.jpg',
-    fit: BoxFit.cover,
-    width: double.infinity,
-  ),
-];
+  List carouselItems = [
+    'assets/images/pexels-bri-schneiter-28802-346529.jpg',
+    'assets/images/pexels-pixabay-147411.jpg',
+    'assets/images/pexels-pixabay-247599.jpg',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -50,13 +38,61 @@ class _HomepageState extends State<Homepage> {
             // Tab 1: All News
             Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: CarouselSlider(items: carouselItems, options: CarouselOptions(
-                    height: 200,
-                    aspectRatio: 16/9
-                  )),
+                SizedBox(
+                  height:200,
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: carouselItems.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index){
+                    return Stack(
+                      children: [
+                        Container(
+                          height:200,
+                          width:300,
+                          margin: const EdgeInsets.all(8.0),
+                          decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(16),
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage(carouselItems[index]))
+                          ),
+                        ),
+                        Container(
+                          height: 200,
+                          width: 300,
+                          margin: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16),
+                            color: Colors.black.withOpacity(0.2)
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text('2 hours ago', style: TextStyle(color: Colors.white),),
+                                    Icon(Icons.bookmark, color: Colors.white,)
+                                  ],
+                                ),
+                                Spacer(),
+                                Text("A ruggedly beautiful quarantine site", style: TextStyle(color: Colors.white, fontSize: 18),)
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    );
+                  }),
                 ),
+                Container(
+                  
+                )
               ],
             ),
             // Tab 2
