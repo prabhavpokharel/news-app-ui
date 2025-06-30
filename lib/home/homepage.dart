@@ -37,7 +37,11 @@ class _HomepageState extends State<Homepage> {
           children: [
             // Tab 1: All News
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(
+                  height: 20,
+                ),
                 SizedBox(
                   height:200,
                   child: ListView.builder(
@@ -90,8 +94,38 @@ class _HomepageState extends State<Homepage> {
                     );
                   }),
                 ),
-                Container(
-                  
+                SizedBox(
+                  height: 20,
+                ),
+                Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0),
+                      child: Text('Latest News', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          height: 100,
+                          width: 100,
+                          margin: const EdgeInsets.all(8.0),
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(16),
+                          image: DecorationImage(fit: BoxFit.fill, image: AssetImage('assets/images/pexels-bri-schneiter-28802-346529.jpg'))),
+                        ),
+                        Column(
+                          children: [
+                            Text('Animals get boost from Southwest monsoon rains'),
+                            Row(
+                              children: [
+                                Text('15 minutes ago', style: TextStyle(color: Colors.grey),),
+                                Icon(Icons.bookmark, color: Colors.amber,)
+                              ],
+                            )
+                          ],
+                        )
+                      ],
+                    )
+                  ],
                 )
               ],
             ),
